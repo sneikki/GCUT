@@ -1,0 +1,27 @@
+#!/usr/bin/env python
+
+from typing import Literal
+from argparse import ArgumentParser
+from lib.ts_project import create_ts_project
+
+
+def parse_arguments():
+    arg_parser = ArgumentParser(prog="create-cloud-function",
+                                description="Create Google Cloud Function")
+
+    arg_parser.add_argument("name")
+    arg_parser.add_argument("--type", choices=["ts"], required=True)
+    arg_parser.add_argument("--trigger", choices=["http"], required=True)
+    return arg_parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_arguments()
+
+    function_name = args.name
+    function_type: Literal["ts"] = args.type
+    function_trigger = args.trigger
+
+    match function_type:
+        case "ts":
+            create_ts_project(function_name, function_type, function_trigger)
