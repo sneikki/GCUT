@@ -10,5 +10,6 @@ mkdir -p "$INSTALL_PATH"
 
 cp -r create-cloud-function "$INSTALL_PATH"
 
-
 append-module-to-path "create-cloud-function"
+
+echo "Run \`source ~/.bashrc\` to activate changes"
